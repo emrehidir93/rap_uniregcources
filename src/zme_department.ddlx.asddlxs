@@ -1,0 +1,71 @@
+@Metadata.layer: #CORE
+
+@UI: {
+    headerInfo: {
+        typeName: 'Department ID',
+        typeNamePlural: 'Department IDs',
+        title: {
+            type: #STANDARD,
+            label: 'Department ID',
+            value: 'DepartmentId'
+        },
+        description: {
+            type: #STANDARD,
+            label: 'Department Name',
+            value: 'DepartmentName'
+        }
+    },
+    presentationVariant: [{
+        sortOrder: [{
+            by: 'DepartmentId',
+            direction:#DESC
+        }],
+        visualizations: [ {
+      type: #AS_LINEITEM
+    } ]
+    }]
+}
+annotate view ZC_TB_DEPARTMENT
+    with 
+{
+           @UI:{
+      facet: [{
+                 id: 'General',
+                 purpose: #STANDARD,
+                 label: 'General Info',
+                 position: 10,
+                 type:#IDENTIFICATION_REFERENCE,
+                 targetQualifier: 'General' },
+
+            
+                 { id: 'CourceItem',
+                purpose: #STANDARD,
+                type:#LINEITEM_REFERENCE,
+                label: 'Cources',
+                targetElement: '_cources',
+                position: 20 },
+                       { id: 'StudentItem',
+                purpose: #STANDARD,
+                type:#LINEITEM_REFERENCE,
+                label: 'Students',
+                targetElement: '_students',
+                position: 30 }
+                
+  ]}
+ @UI:{ lineItem: [{ position: 10, label: 'Department ID' }],
+        identification: [{ position: 10, label: 'Department ID', qualifier: 'General' }]
+  }
+    DepartmentId;
+      @UI:{ lineItem: [{ position: 20, label: 'Department Name' }],
+        identification: [{ position: 20, label: 'Department Name', qualifier: 'General' }]
+  }
+
+    DepartmentName;
+          @UI:{ lineItem: [{ position: 30, label: 'Department Head' }],
+        identification: [{ position: 30, label: 'Department Head', qualifier: 'General' }]
+  }
+
+    DepartmentHead;
+
+    
+}

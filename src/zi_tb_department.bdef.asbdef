@@ -1,0 +1,95 @@
+managed implementation in class zbp_i_tb_department unique;
+strict ( 2 );
+
+define behavior for ZI_TB_DEPARTMENT //alias <alias_name>
+persistent table ztb_departments
+lock master
+authorization master ( global )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  association _cources { create; }
+  association _students { create; }
+
+
+  mapping for ztb_departments
+    {
+      DepartmentId   = department_id;
+      DepartmentName = department_name;
+      DepartmentHead = department_head;
+    }
+
+}
+
+define behavior for ZI_TB_COURCE //alias <alias_name>
+persistent table ztb_cources
+lock dependent by _departments
+authorization dependent by _departments
+//etag master <field_name>
+{
+
+  update;
+  delete;
+  field ( readonly ) DepartmentId;
+  association _departments;
+//  association _students { create; }
+  mapping for ztb_cources
+    {
+      CourceId       = cource_id;
+      DepartmentId   = department_id;
+      CourceName     = cource_name;
+      DepartmentName = department_name;
+      Qouta          = qouta;
+      Duration       = duration;
+    }
+}
+define behavior for ZI_TB_STUDENTS //alias <alias_name>
+persistent table ztb_students
+lock dependent by _departments
+authorization dependent by _departments
+//lock dependent by <no_to_master_association found>
+//authorization dependent by <no_to_master_association found>
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) DepartmentId;
+//  association _cources;
+  association _departments;
+  association _RegCources { create; }
+  mapping for ztb_students
+    {
+//      CourceId       = cource_id;
+      DepartmentId   = department_id;
+      FirstName      = first_name;
+      LastName       = last_name;
+      DepartmentName = department_name;
+      StudentId      = student_id;
+    }
+}
+define behavior for ZI_TB_REGCOURCE
+persistent table ztb_regcource
+lock dependent by _departments
+authorization dependent by _departments
+{
+  update;
+  delete;
+  field ( readonly ) StudentId, DepartmentId;
+//  association _cources;
+  association _students;
+  association _departments;
+  mapping for ztb_regcource {
+     CourceName = cource_name;
+     DepartmentName = department_name;
+     FirstName = first_name;
+     LastName = last_name;
+     RegisteredId = registered_id;
+     RegistrationDate = registration_date;
+     StudentId = student_id;
+
+
+  }
+
+}

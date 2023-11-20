@@ -1,0 +1,66 @@
+@Metadata.layer: #CORE
+
+@UI:{
+    headerInfo:{
+        typeName: 'Reg Cource',
+        typeNamePlural: 'Reg Cources',
+        title:{
+            type: #STANDARD,
+            value: 'RegisteredId'
+        },
+        description: {
+            type: #STANDARD,
+            value: 'RegisteredId'
+        }
+    },
+    presentationVariant: [{
+        sortOrder: [{
+            by: 'RegisteredId',
+            direction: #DESC }]
+    }]
+}
+annotate view ZC_TB_REGCOURCE
+    with 
+{
+
+@UI:{
+      facet: [{
+                 id: 'General',
+                 purpose: #STANDARD,
+                 label: 'Registration Cources',
+                 position: 10,
+                 type:#IDENTIFICATION_REFERENCE,
+                 targetQualifier: 'General' }
+  ]}
+  @UI:{ lineItem: [{ position: 10, label: 'Reg ID' }],
+        identification: [{ position: 10, label: 'Reg ID.', qualifier: 'General' }]
+  }
+    RegisteredId;
+      @UI:{ lineItem: [{ position: 20, label: 'Student ID' }],
+        identification: [{ position: 20, label: 'Student ID.', qualifier: 'General' }]
+  }
+    StudentId;
+      @UI:{ lineItem: [{ position: 30, label: 'Cource Name' }],
+        identification: [{ position: 30, label: 'Cource Name.', qualifier: 'General' }]
+  }
+    CourceName;
+      @UI:{ lineItem: [{ position: 40, label: 'First Name' }],
+        identification: [{ position: 40, label: 'First Name', qualifier: 'General' }]
+  }
+    FirstName;
+      @UI:{ lineItem: [{ position: 50, label: 'Last Name' }],
+        identification: [{ position: 50, label: 'Last Name', qualifier: 'General' }]
+  }
+    LastName;
+      @UI:{ lineItem: [{ position: 60, label: 'Department Name' }],
+        identification: [{ position: 60, label: 'Department Name', qualifier: 'General' }]
+  }
+    DepartmentName;
+      @UI:{ lineItem: [{ position: 70, label: 'Reg Date' }],
+        identification: [{ position: 70, label: 'Reg Date', qualifier: 'General' }],
+        fieldGroup: [{ qualifier: 'DatesGroup', position: 10 }]
+  }
+    RegistrationDate;
+
+    
+}

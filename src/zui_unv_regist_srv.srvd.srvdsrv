@@ -1,0 +1,7 @@
+@EndUserText.label: 'University Registration System Service'
+define service ZUI_UNV_REGIST_SRV {
+  expose ZC_TB_DEPARTMENT as Departments;
+  expose ZC_TB_COURCES    as Cources;
+  expose ZC_TB_STUDENTS   as Students;
+  expose ZC_TB_REGCOURCE  as RegCources;
+}

@@ -1,0 +1,66 @@
+@Metadata.layer: #CORE
+@UI:{
+    headerInfo:{
+        typeName: 'Student',
+        typeNamePlural: 'Students',
+        title:{
+            type: #STANDARD,
+            value: 'StudentId'
+        },
+        description: {
+            type: #STANDARD,
+            value: 'StudentId'
+        }
+    },
+    presentationVariant: [{
+        sortOrder: [{
+            by: 'StudentId',
+            direction: #DESC }]
+    }]
+}
+annotate view ZC_TB_STUDENTS
+    with 
+{
+ @UI:{
+      facet: [{
+                 id: 'General',
+                 purpose: #STANDARD,
+                 label: 'Student Information',
+                 position: 10,
+                 type:#IDENTIFICATION_REFERENCE,
+                 targetQualifier: 'General' },
+                  { 
+                  id: 'RegCourceItem',
+                        purpose: #STANDARD,
+                        type:#LINEITEM_REFERENCE,
+                        label: 'Registration Cources',
+                        targetElement: '_RegCources',
+                        position: 20 
+                  }
+  ]}
+  @UI:{ lineItem: [{ position: 10, label: 'Department ID' }],
+        identification: [{ position: 10, label: 'Department ID.', qualifier: 'General' }]
+  }
+    DepartmentId;
+//      @UI:{ lineItem: [{ position: 10, label: 'Cource ID' }],
+//        identification: [{ position: 10, label: 'Cource ID', qualifier: 'General' }]
+//  }
+//    CourceId;
+        @UI:{ lineItem: [{ position: 20, label: 'Student ID' }],
+        identification: [{ position: 20, label: 'Student ID', qualifier: 'General' }]
+  }
+    StudentId;
+        @UI:{ lineItem: [{ position: 30, label: 'First Name' }],
+        identification: [{ position: 30, label: 'First Name', qualifier: 'General' }]
+  }
+    FirstName;
+        @UI:{ lineItem: [{ position: 40, label: 'Last Name' }],
+        identification: [{ position: 40, label: 'Last Name', qualifier: 'General' }]
+  }
+    LastName;
+        @UI:{ lineItem: [{ position: 50, label: 'Department Name' }],
+        identification: [{ position: 50, label: 'Department Name', qualifier: 'General' }]
+  }
+    DepartmentName;
+
+}

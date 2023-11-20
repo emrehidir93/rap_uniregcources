@@ -1,0 +1,57 @@
+@Metadata.layer: #CORE
+@UI:{
+    headerInfo:{
+        typeName: 'Cource',
+        typeNamePlural: 'Cources',
+        title:{
+            type: #STANDARD,
+            value: 'CourceId'
+        },
+        description: {
+            type: #STANDARD,
+            value: 'CourceName'
+        }
+    },
+    presentationVariant: [{
+        sortOrder: [{
+            by: 'CourceId',
+            direction: #DESC }]
+    }]
+}
+annotate view ZC_TB_COURCES
+    with 
+{ @UI:{
+      facet: [{
+                 id: 'General',
+                 purpose: #STANDARD,
+                 label: 'Cource Information',
+                 position: 10,
+                 type:#IDENTIFICATION_REFERENCE,
+                 targetQualifier: 'General' }
+  ]}
+  @UI:{ lineItem: [{ position: 5, label: 'Department ID' }],
+        identification: [{ position: 5, label: 'Department ID', qualifier: 'General' }]
+  }
+    DepartmentId;
+      @UI:{ lineItem: [{ position: 10, label: 'Cource ID' }],
+        identification: [{ position: 10, label: 'Cource ID', qualifier: 'General' }]
+  }
+    CourceId;
+      @UI:{ lineItem: [{ position: 20, label: 'Cource Name' }],
+        identification: [{ position: 20, label: 'Cource Name', qualifier: 'General' }]
+  }
+    CourceName;
+      @UI:{ lineItem: [{ position: 30, label: 'Qouta' }],
+        identification: [{ position: 30, label: 'Qouta', qualifier: 'General' }]
+  }
+    Qouta;
+      @UI:{ lineItem: [{ position: 40, label: 'Department Name' }],
+        identification: [{ position: 40, label: 'Department Name', qualifier: 'General' }]
+  }
+    DepartmentName;
+      @UI:{ lineItem: [{ position: 50, label: 'Duration' }],
+        identification: [{ position: 50, label: 'Duration', qualifier: 'General' }]
+  }
+    Duration;
+
+}
